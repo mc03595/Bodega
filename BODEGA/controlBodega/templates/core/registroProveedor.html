@@ -1,0 +1,31 @@
+
+<!-- heredamos de la platilla Base.html -->
+{% extends 'core/base.html' %}
+<!-- escribimos el titulo de la pagina-->
+{% block title %} Registro de Proveedores {% endblock %}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+	<!--CUERPO REGISTRO DE PROVEEDORES-->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h2>Registro de Proveedores</h2>
+
+          <div class="bg-white border rounded p-5">
+            <form method="POST" class="row">
+              {% csrf_token %}
+               {{formaProveedor.proveedor}}
+               {{formaProveedor.direccion}}
+               {{formaProveedor.telefono}}
+               {{formaProveedor.correo}}
+              <button type="submit" class="btn btn-primary btnGuardar"><i class="far fa-save"></i> Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

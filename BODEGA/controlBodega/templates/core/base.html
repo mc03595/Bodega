@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+	<meta charset="utf-8">
+	<title>{% block title %} {% endblock %}</title>
+
+	<!--PLUGINS CSS-->
+  {% load static %}
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-1BmE4kWBq78iYhFldvKuhfTAU6auU8tT94WrHftjDbrCEXSU1oBoqyl2QvZ6jIW3" crossorigin="anonymous">
+  <link rel="stylesheet" type="text/css" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+  <link rel="stylesheet" type="text/css" href="{% static 'core/css/sweetalert2.min.css' %}">
+
+	<!--FUENTES-->
+	<link rel="preconnect" href="https://fonts.googleapis.com">
+	<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+	<link href="https://fonts.googleapis.com/css2?family=Lato&display=swap" rel="stylesheet">
+
+	<!--CSS PERSONALIZADO-->
+	<link rel="stylesheet" type="text/css" href=" {% static 'core/css/estilos.css' %}">
+
+
+</head>
+<body class="bg-light">
+	<!--BARRA DE MENU-->
+	<nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+  		<div class="container">
+    		<a class="navbar-brand" href="#">CONTROL BODEGA</a>
+    		<button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+      			<span class="navbar-toggler-icon"></span>
+    		</button>
+
+    		<div class="collapse navbar-collapse" id="navbarNav">
+      			<ul class="navbar-nav ms-md-auto">
+        			<li class="nav-item">
+         				<a class="nav-link active" aria-current="page" href="{%url 'index'%}"><i class="fas fa-home"></i> Inicio</a>
+        			</li>
+        			<li class="nav-item dropdown">
+          				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink1" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            				<i class="fas fa-dolly"></i> Bodegas
+          				</a>
+          				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				            <li><a class="dropdown-item" href="{%url 'registrobodega'%}">Nuevo</a></li>
+				            <li><a class="dropdown-item" href= "{%url 'listadobodegas'%} ">Listado</a></li>
+          				</ul>
+        			</li>
+
+					<li class="nav-item dropdown">
+          				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink2" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            				<i class="fas fa-sitemap"></i> Categorias
+          				</a>
+          				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				            <li><a class="dropdown-item" href="{%url 'registrocategorias' %}">Nueva</a></li>
+				            <li><a class="dropdown-item" href= "{%url 'listadocategorias'%} ">Listado</a></li>
+          				</ul>
+        			</li>
+					<li class="nav-item dropdown">
+					  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+						<i class="fas fa-users"></i> Proveedores
+					  </a>
+					  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+						<li><a class="dropdown-item" href="{%url 'registroproveedor' %}">Nuevo</a></li>
+						<li><a class="dropdown-item" href="{%url 'listadoproveedores' %}">Listado</a></li>
+					  </ul>
+				    </li>
+
+        			<li class="nav-item dropdown">
+          				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink3" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            				<i class="fas fa-box-open"></i> Productos
+          				</a>
+          				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				            <li><a class="dropdown-item" href="{%url 'registrarproducto' %}">Nuevo</a></li>
+				            <li><a class="dropdown-item" href="{%url 'listadoproductos' %}">Listado</a></li>
+          				</ul>
+        			</li>
+        			<!--Configuracion para hacerlo crecer un poco mas
+        				<li class="nav-item dropdown">
+          				<a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
+            				<i class="fas fa-wrench"></i> Configuración
+          				</a>
+          				<ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
+				            <li><a class="dropdown-item" href="#">Action</a></li>
+				            <li><a class="dropdown-item" href="#">Another action</a></li>
+				            <li><a class="dropdown-item" href="#">Something else here</a></li>
+          				</ul>
+        			</li>-->
+      			</ul>
+    		</div>
+  		</div>
+	</nav>
+
+
+		 {% block content %}{% endblock %} <!--Aqui es donde va el bloque de contanido de cada pagina-->
+
+
+
+ <!--PLUGINS JAVASCRIPT-->
+  <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+  <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js" integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p" crossorigin="anonymous"></script>
+  <script src="{% static 'core/js/sweetalert2.all.min.js'%}"></script>
+
+	<!--JAVASCRIPT PERSONALIZADO-->
+	<script type="text/javascript" src="{% static 'core/js/codigo.js' %}"></script>
+
+<!-- LA siguiente condicional es cuando existe una modificacion de un elento de algun listado, solo es para confirmar que se edito correctamente-->
+	     {% if messages %}
+			{% for m in messages %}
+				<script>
+					Swal.fire({
+						"title": "Bien",
+						"text":"{{m}}",
+						"icon":"sucess"
+					})
+				</script>
+	        {%endfor%}
+	     {% endif %}
+<!--------------------------->
+
+</body>
+</html>

@@ -1,0 +1,36 @@
+<!-- heredamos de la platilla Base.html -->
+{% extends 'core/base.html' %}
+<!-- escribimos el titulo de la pagina-->
+{% block title %} Registro de Categoria {% endblock %}
+
+<!-- Bloque de contenido -->
+{% block content %}
+	<!--REGISTRO DE CATEGORIAS-->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <div class="row">
+            <div class="col-md-9">
+              <h2>Registro de Categorías</h2>
+            </div>
+            <div class="col-md-3 text-end">
+              <a href="{%url 'listadocategorias' %}" class="btn btn-danger" data-bs-toggle="tooltip" data-bs-placement="top" title="Regresar a Listado Categoría"><i class="fas fa-reply-all"></i></a>
+            </div>
+          </div>
+
+
+          <div class="bg-white border rounded p-5">
+            <form method="POST" class="row">
+               {% csrf_token %}
+               {{formaCategorias.nombreCategoria}}
+
+              <button type="submit" class="btn btn-primary btnGuardar"><i class="far fa-save"></i> Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{%endblock%}
+

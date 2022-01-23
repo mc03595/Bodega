@@ -1,0 +1,53 @@
+
+<!-- heredamos de la platilla Base.html -->
+{% extends 'core/base.html' %}
+<!-- escribimos el titulo de la pagina-->
+{% block title %} Listado de Bodegas {% endblock %}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+	<!--LISTADO DE PROVEEDORES-->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-9">
+          <h2>Listado de Proveedores</h2>
+        </div>
+        <div class="col-3 text-end">
+          <a href="{%url 'registroproveedor' %}" class="btn btn-success"><i class="fas fa-plus-circle"></i> Nuevo Proveedor</a>
+        </div>
+
+        <div class="bg-white border rounded p-5 table-responsive">
+          <table class="table">
+            <thead class="table-secondary">
+              <tr>
+                <th scope="col">Nombre Proveedor</th>
+                <th scope="col">Dirección</th>
+                <th scope="col">Teléfono</th>
+                <th scope="col">Correo</th>
+                <th scope="col">Creado</th>
+                <th scope="col"></th>
+              </tr>
+            </thead>
+            <tbody>
+            {% for proveedor in proveedores %}
+              <tr>
+                <td>{{proveedor.proveedor}}</td>
+                <td>{{proveedor.direccion}}</td>
+                <td>{{proveedor.telefono}}</td>
+                <td>{{proveedor.correo}}</td>
+                <td class="text-end">
+                  <a class="btn btn-primary btn-sm"  href="../editarproveedor/{{proveedor.id}}" title="Editar"><i class="fas fa-edit"></i></a>
+                  <a class="btn btn-danger btn-sm" data-bs-toggle="tooltip" data-bs-placement="top" href="../eliminarproveedor/{{proveedor.id}}" title="Eliminar"><i class="fas fa-trash-alt"></i></a>
+                </td>
+              </tr>
+            {% endfor %}
+            </tbody>
+          </table>
+        </div>
+      </div>
+    </div>
+  </section>
+
+{% endblock %}

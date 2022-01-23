@@ -1,0 +1,93 @@
+
+<!-- heredamos de la platilla Base.html -->
+{% extends 'core/base.html' %}
+<!-- escribimos el titulo de la pagina-->
+{% block title %} Registro de productos {% endblock %}
+
+<!-- Bloque de contenido -->
+{% block content %}
+	<!--REGISTRO DE PRODUCTOS-->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6">
+          <h2>Registro de Productos</h2>
+        </div>
+        <div class="col-md-6 text-end">
+          <a href="{%url 'listadoproductos'%}" class="btn btn-primary"><i class="far fa-file"></i> Listado Productos</a>
+          <a href="{%url 'registrobodega'%}" class="btn btn-success"><i class="fas fa-warehouse"></i> Registrar Bodega</a>
+          <a href="{%url 'registrocategorias'%}" class="btn btn-danger"><i class="fas fa-sitemap"></i> Registrar Categoría</a>
+        </div>
+
+        <div class="col-xs-12">
+
+
+          <div class="bg-white border rounded p-5">
+            <form method="POST" class="row">
+                {% csrf_token %}
+                <div class="col-md-3"><p>Seleccione la(s) Bodega(s)</p>
+                    {{formaProducto.nombreBodega}}
+                </div>
+
+                <div class="col-md-3">
+                     <p>Selecciona la categoria:</p>
+                    {{formaProducto.nombreCategoria}}
+                </div>
+
+                <div class="col-md-3">
+                    <p>Selecciona un proveedor:</p>
+                    {{formaProducto.proveedor}}
+                </div>
+
+                <div class="col-md-6">
+                    <p>Nombre del Producto:</p>
+                    {{formaProducto.nombreProducto}}
+                </div>
+
+                <div class="col-md-4">
+                    <p>Color:</p>
+                    {{formaProducto.nombreColor}}
+                </div>
+
+                <div class="col-md-4">
+                    <p>Medidas:</p>
+                    {{formaProducto.nombreMedidas}}
+                </div>
+
+                <div class="col-md-3">
+                    <p>Marca:</p>
+                 {{formaProducto.nombreMarca}}
+                </div>
+
+                <div class="col-md-3">
+                    <p>Modelo:</p>
+                    {{formaProducto.nombreModelo}}
+                </div>
+
+                <div class="col-md-4">
+                    <p>Serial:</p>
+                     {{formaProducto.nombreSerial}}
+                </div>
+
+                <div class="col-md-3">
+                    <p>Stock:</p>
+                   {{formaProducto.stockProducto}}
+                </div>
+
+                <div class="col-md-3">
+                    <p>Precio Compra:</p>
+                   {{formaProducto.precioProducto}}
+                </div>
+
+                <div class="text-end">
+                     <button type="submit" class="btn btn-primary btnGuardar"><i class="far fa-save"></i> Guardar</button>
+                </div>
+            </form>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}

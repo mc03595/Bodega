@@ -1,0 +1,31 @@
+
+<!-- heredamos de la platilla Base.html -->
+{% extends 'core/base.html' %}
+<!-- escribimos el titulo de la pagina-->
+{% block title %} Edicion de Bodega {% endblock %}
+
+<!-- Bloque de contenido -->
+{% block content %}
+
+	<!--CUERPO REGISTRO DE BODEGAS-->
+  <section class="py-5">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-6 offset-md-3">
+          <h2>Editar Bodega</h2>
+
+          <div class="bg-white border rounded p-5">
+            <form method="POST" class="row">
+              {% csrf_token %}
+               {{formaEditar.nombreBodega}}
+               {{formaEditar.direccionBodega}}
+               {{formaEditar.telefonoBodega}}
+               {{formaEditar.encargadoBodega}}
+              <button type="submit" class="btn btn-primary "><i class="far fa-save"></i> Guardar</button>
+            </form>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+{% endblock %}
